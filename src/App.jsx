@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import UserInfo from "./pages/UserInfo";
+import Auth from './components/Auth'
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+      <Auth>
+        <Profile />
+      </Auth>
+    ),
   },
   {
     path: "/user-info",
-    element: <UserInfo />,
+    element: (
+      <Auth>
+        <UserInfo />
+      </Auth>
+    ),
   },
 ]);
 function App() {

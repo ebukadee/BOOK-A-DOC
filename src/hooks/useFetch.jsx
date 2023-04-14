@@ -14,6 +14,7 @@ const useFetch = (url, settings = {}) => {
         setLoading(false);
         setError(err);
       });
+    setLoading(false);
   }, []);
 
   return { data, loading, error };

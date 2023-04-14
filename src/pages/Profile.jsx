@@ -5,24 +5,25 @@ import { TextField, Button } from '@mui/material';
 import NavigateNext from '@mui/icons-material/NavigateNext';
 import SkipNext from '@mui/icons-material/SkipNext';
 import useFetch from '../hooks/useFetch'
-import { endpoint } from '../utlis/endpoints';
+import { endpoint } from '../utils/endpoints';
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 const Profile = () => {
 
     const navigate = useNavigate()
 
-    const settings = {
-        credentials: 'include',
-        headers: {
-            "Content-Type": "application/json",
-        }
-    };
+    const [selectedGenotype, setSelectedGenotype] = useState('')
 
-    const { data, loading, error } = useFetch(`${endpoint}/verify-user`, settings)
+    const handleSelectedGenotype = (e) => setSelectedGenotype(e.target.value);
 
-    console.log(data)
-    console.log(loading)
-    console.log(error)
+    const genotypeMenuItems = ['AA', 'AS', 'AC', 'SS', 'SC'].map((genotype) => (
+        <MenuItem value={genotype} key={genotype}>
+          {genotype}
+        </MenuItem>
+    ));
 
     return (
         <section className="bg-midWhite min-h-[100vh] px-4 py-4">
@@ -39,22 +40,33 @@ const Profile = () => {
 
                 <div className="mx-auto max-w-lg">
                     <div className="mt-8">
-                        <TextField id="outlined-basic" type="text" label="Height" variant="outlined" className="w-full" />
+                        <TextField id="outlined-basic" type="text" label="Height(cm)" variant="outlined" className="w-full" />
                     </div>
                     <div className="mt-8">
-                        <TextField id="outlined-basic" type="text" label="Weight" variant="outlined" className="w-full" />
+                        <TextField id="outlined-basic" type="text" label="Weight(kg)" variant="outlined" className="w-full" />
                     </div>
                     <div className="mt-8">
                         <TextField id="outlined-basic" type="text" label="Blood Group" variant="outlined" className="w-full" />
                     </div>
                     <div className="mt-8">
-                        <TextField id="outlined-basic" type="text" label="Genotype" variant="outlined" className="w-full" />
+                        <FormControl fullWidth>
+                            <InputLabel id="genotype">Genotype</InputLabel>
+                            <Select
+                                labelId="genotype"
+                                id="demo-simple-select"
+                                value={selectedGenotype}
+                                label="Genotype"
+                                onChange={handleSelectedGenotype}
+                            >
+                                {genotypeMenuItems}
+                            </Select>
+                        </FormControl>
                     </div>
-                    <div className="mt-4 flex items-center justify-between">
-                        <p>Why do we need this information, <span className="text-hint">Learn more</span></p> <Link to='/user-info'><Button variant="text" endIcon={<SkipNext />}>Skip</Button></Link>
+                    <div className="mt-4">
+                        <p>Why do we need this information, <span className="text-hint">Learn more</span></p>
                     </div>
                     <div className="mt-4 mb-8">
-                        <Button variant="contained" className="w-full" size="large" endIcon={<NavigateNext />}>Next</Button>
+                        <Button variant="contained" className="w-full !py-3" size="large" endIcon={<NavigateNext />}>Next</Button>
                     </div>
                 </div>
 

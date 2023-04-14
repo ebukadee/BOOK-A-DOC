@@ -133,7 +133,7 @@ const UserInfo = () => {
           <div className="mt-4 mb-8">
             <Button
               variant="contained"
-              className="w-full !py-4"
+              className="w-full !py-3"
               size="large"
               endIcon={<Save />}
             >

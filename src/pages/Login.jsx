@@ -4,7 +4,7 @@ import doctorsvg from "../assets/icons/doctors.svg";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import { endpoint } from "../utlis/endpoints";
+import { endpoint } from "../utils/endpoints";
 import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
 import { toast as toasts } from "react-toastify";

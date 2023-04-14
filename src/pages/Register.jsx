@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import create from "../assets/icons/create.svg";
 import { TextField, Button, Checkbox } from "@mui/material";
-import { endpoint } from "../utlis/endpoints";
+import { endpoint } from "../utils/endpoints";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
