@@ -38,7 +38,7 @@ const Login = () => {
         console.log("Success", data);
         setErrors(null);
         toasts.success(data.success);
-        navigate('/login')
+        navigate('/profile')
       } else if(data.error) {
         console.log("Error", data);
         setErrors(data.error);
