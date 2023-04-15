@@ -9,6 +9,11 @@ export default function Navbar() {
   };
   return (
     <>
+      <div>
+        <h2 className="text-xl absolute z-50  left-8 top-8 font-medium  lg:hidden ">
+          BOOK-A-DOC
+        </h2>
+      </div>
       <div
         onClick={handleClick}
         className=" absolute  right-8 top-8 z-50  lg:hidden "
@@ -17,10 +22,10 @@ export default function Navbar() {
       </div>
       <nav
         className={`${
-          toggle ? "hidden" : "flex"
+          toggle ? "hidden lg:flex" : "flex"
         } fixed h-[100vh] bg-transparent backdrop-blur-lg  z-30 w-full  items-center justify-center flex-col lg:px-8 lg:flex-row lg:justify-between lg:items-center lg:h-16 lg:border-b-[1px]  lg:border-b-white-300  `}
       >
-        <h2 className="text-xl absolute left-8 top-8 font-medium  lg:static lg:block lg:text-2xl ">
+        <h2 className=" hidden text-xl absolute left-8 top-8 font-medium  lg:static lg:block lg:text-2xl ">
           BOOK-A-DOC
         </h2>
         <ul className=" bg-transparent flex  flex-col  items-center  lg:justify-center  lg:flex-row lg:h-16 lg:w-64">
