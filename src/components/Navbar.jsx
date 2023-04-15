@@ -3,7 +3,7 @@ import { HambergerMenu, CloseCircle } from "iconsax-react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const handleClick = () => {
     setToggle((prev) => !prev);
   };
@@ -44,7 +44,7 @@ export default function Navbar() {
         </ul>
         <div className=" flex flex-col  lg:flex-row ">
           <Link to="/login">
-            <button className="bg-hint px-4 py-2 rounded-3xl text-primary ">
+            <button className="bg-hint px-4 py-2 border-2 border-hint rounded-3xl text-primary ">
               Sign in
             </button>
           </Link>
