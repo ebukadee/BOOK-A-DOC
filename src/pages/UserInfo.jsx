@@ -7,14 +7,24 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import NavigateNext from "@mui/icons-material/NavigateNext";
 import Save from "@mui/icons-material/Save";
+import { useUserContext } from '../context/userContext'
+import FormHelperText from '@mui/material/FormHelperText';
+import { endpoint } from "../utils/endpoints";
+import CircularProgress from "@mui/material/CircularProgress";
+import { toast as toasts } from "react-toastify";
+
 
 const UserInfo = () => {
+  
   const navigate = useNavigate();
+  const { user } = useUserContext()
+
 
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [allergies, setAllergies] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSelectedState = (e) => setSelectedState(e.target.value);
 
@@ -22,6 +32,9 @@ const UserInfo = () => {
 
   const [states, setStates] = useState(null);
   const [cities, setCities] = useState(null);
+
+  const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -63,6 +76,40 @@ const UserInfo = () => {
     </MenuItem>
   ));
 
+  const submit = async () => {
+    const settings = {
+      method: "post",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        state: selectedState,
+        city: selectedCity,
+        allergies: allergies,
+        description: description
+      }),
+    };
+
+    try {
+      setLoading(true)
+      const res = await fetch(`${endpoint}/user-info/${user._id}`, settings)
+      const data = await res.json()
+      if (data.error) {
+        setErrors(data.error)
+      } else {
+        toasts.success(data.success)
+        setErrors(null)
+        navigate('/')
+      }
+      setLoading(false)
+    }
+    catch (err) {
+      setLoading(false)
+      console.log(err)
+    }
+  }
+
   return (
     <section className="bg-midWhite min-h-[100vh] px-4 py-4">
       <div className="max-w-3xl mx-auto">
@@ -85,7 +132,7 @@ const UserInfo = () => {
 
         <div className="mx-auto max-w-lg">
           <div className="mt-8">
-            <FormControl fullWidth>
+            <FormControl error={errors?.state ? true : false} fullWidth>
               <InputLabel id="demo-simple-select-label">State</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -96,20 +143,22 @@ const UserInfo = () => {
               >
                 {stateMenuItems}
               </Select>
+              <FormHelperText>{errors?.state}</FormHelperText>
             </FormControl>
           </div>
           <div className="mt-8">
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Cities</InputLabel>
+            <FormControl error={errors?.city ? true : false} fullWidth>
+              <InputLabel id="demo-simple-select-label">City</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={selectedCity}
-                label="State"
+                label="City"
                 onChange={handleSelectedCity}
               >
                 {stateCitiesItems}
               </Select>
+              <FormHelperText>{errors?.city}</FormHelperText>
             </FormControl>
           </div>
           <div className="mt-8">
@@ -119,6 +168,10 @@ const UserInfo = () => {
               label="Allergies"
               variant="outlined"
               className="w-full"
+              value={allergies}
+              onChange={(e)=>setAllergies(e.target.value)}
+              helperText={errors?.allergies}
+              error={errors?.allergies ? true : false}
             />
           </div>
           <div className="mt-8">
@@ -128,17 +181,28 @@ const UserInfo = () => {
               multiline
               rows={4}
               className="w-full"
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
+              helperText={errors?.description}
+              error={errors?.description ? true : false}
             />
           </div>
           <div className="mt-4 mb-8">
-            <Button
-              variant="contained"
-              className="w-full !py-3"
-              size="large"
-              endIcon={<Save />}
-            >
-              Save
-            </Button>
+            {loading ? (
+              <Button variant="contained" className="w-full !py-3" size="large">
+                <CircularProgress size={26} sx={{ color: () => "#fff" }} />
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                className="w-full !py-3"
+                size="large"
+                onClick={submit}
+                endIcon={<Save />}
+              >
+                Save
+              </Button>
+            )}
           </div>
         </div>
       </div>
