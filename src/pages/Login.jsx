@@ -34,25 +34,30 @@ const Login = () => {
     try {
       const res = await fetch(`${endpoint}/login`, settings);
       const data = await res.json();
+      
       if (data.success) {
-        console.log("Success", data);
+
         setErrors(null);
         toasts.success(data.success);
         navigate('/profile')
+
       } else if(data.error) {
-        console.log("Error", data);
+
         setErrors(data.error);
         setToast((prev) => ({
           ...prev,
           show: true,
           message: "Stop breaking rules!",
         }));
+
       }else{
+
         setToast((prev) => ({
           ...prev,
           show: true,
           message: data.server_err,
         }));
+        
       }
       setLoading(false);
     } catch (err) {
