@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import UserInfo from "./pages/UserInfo";
 import Auth from './components/Auth'
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
     element: (
       <Auth>
         <UserInfo />
+      </Auth>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <Auth>
+        <Dashboard />
       </Auth>
     ),
   },

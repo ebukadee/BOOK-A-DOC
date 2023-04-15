@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 
 export default function Header() {
   return (
-    <header className="w-full h-auto lg:w-full lg:min-h-[100vh] bg-midWhite">
+    <header className="w-full h-auto lg:w-full bg-midWhite">
       <Navbar />
       <section className="flex-col-reverse flex pt-32 pb-16 lg:flex-row lg:justify-between lg:items-center lg:pt-40 ">
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">

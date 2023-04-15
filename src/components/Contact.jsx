@@ -1,7 +1,7 @@
 import contact from "../assets/contact.webp";
 export default function Contact() {
   return (
-    <section className=" lg:h-[100vh] bg-midWhite">
+    <section className="bg-midWhite">
       <h3 className="px-4 text-center relative top-16 pt-16 text-3xl font-medium ">
         For any any kain issue, you fit reach us
       </h3>

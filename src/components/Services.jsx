@@ -1,7 +1,7 @@
 import { processes } from "./data";
 export default function Services() {
   return (
-    <section className=" h-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh ">
+    <section className=" h-auto w-full lg:w-full lg:relative bg-midAsh ">
       <h3 className=" text-center top-16 pt-12 text-3xl font-medium ">
         Services
       </h3>
