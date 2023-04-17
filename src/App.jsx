@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import UserInfo from "./pages/UserInfo";
 import Auth from './components/Auth'
 import Dashboard from "./pages/Dashboard";
+import BookAppointment from "./pages/BookAppointment";
 
 const router = createBrowserRouter([
   {
@@ -39,10 +40,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
+    path: "/book-appointment",
     element: (
       <Auth>
-        <Dashboard />
+        <BookAppointment />
       </Auth>
     ),
   },
