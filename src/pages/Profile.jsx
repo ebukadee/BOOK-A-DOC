@@ -12,20 +12,50 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useUserContext } from '../context/userContext'
 import { toast as toasts } from "react-toastify";
+import Dashboard from './Dashboard';
+import animedoc from '../assets/anime-doc.svg'
+
 
 const Profile = () => {
 
-    const navigate = useNavigate()
+    const { user } = useUserContext()
+
+    
+
+    return (
+        <Dashboard>
+        <section className="bg-midWhite min-h-[100vh] py-4">
+            <div className="rounded-2xl w-full shadow-lg flex justify-between bg-[#fff]">
+                <div className="py-8 px-8">
+                    <h1 className="text-2xl">Welcome, <span className="text-hint">{user.first_name}{" "}{user.last_name}</span></h1>
+                    <p className="mt-4">Get ready to take control of your health welcome aboard!</p>
+                    <Button variant="contained" className="!mt-8" size="large">BOOK APPOINTMENT</Button>
+                </div>
+                <div>
+                    <img src={animedoc} alt="Anime-doc"/>
+                </div>
+            </div>
+
+            <EditMedicalVitals />
+            
+        </section>
+        </Dashboard>
+    )
+}
+
+
+const EditMedicalVitals = () => {
 
     const { user } = useUserContext()
+    console.log(user)
 
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState(null);
 
-    const [height, setHeight] = useState('')
-    const [weight, setWeight] = useState('')
-    const [bloodGroup, setBloodGroup] = useState('')
-    const [selectedGenotype, setSelectedGenotype] = useState('')
+    const [height, setHeight] = useState( user.height ||'')
+    const [weight, setWeight] = useState( user.weight || '')
+    const [bloodGroup, setBloodGroup] = useState(user.blood_group || '')
+    const [selectedGenotype, setSelectedGenotype] = useState( user.genotype || '')
 
     const handleSelectedGenotype = (e) => setSelectedGenotype(e.target.value);
 
@@ -70,19 +100,9 @@ const Profile = () => {
     }
 
     return (
-        <section className="bg-midWhite min-h-[100vh] px-4 py-4">
-            <div className="max-w-3xl mx-auto">
-                <div className="py-0.5">
-                    <span className="material-symbols-outlined cursor-pointer" onClick={() => navigate(-1)}> undo </span>
-                </div>
-
-                <div className="w-full flex justify-center">
-                    <img src={create} alt="Doctor" className="max-h-72" />
-                </div>
-
-                <h1 className="text-center font-semibold text-4xl my-4">Tell us a more about yourself</h1>
-
-                <div className="mx-auto max-w-lg">
+        <div className="max-w-3xl flex">
+                <div className="max-w-lg pt-8">
+                    <h1 className="font-semibold text-4xl my-8 text-hint">Edit Your Medical Vitals</h1>
                     <div className="mt-8">
                         <TextField 
                             id="height" 
@@ -160,7 +180,6 @@ const Profile = () => {
                 </div>
 
             </div>
-        </section>
     )
 }
 
