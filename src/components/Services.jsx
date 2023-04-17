@@ -1,11 +1,33 @@
+import { motion } from "framer-motion";
 import { processes } from "./data";
 export default function Services() {
+  const Variants = {
+    offscreen: {
+      opacity: 0,
+      y: 200,
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.3,
+        duration: 0.8,
+      },
+    },
+  };
   return (
-    <section className=" h-auto w-full lg:w-full lg:relative bg-midAsh ">
-      <h3 className=" text-center top-16 pt-12 text-3xl font-medium ">
+    <section className=" h-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh ">
+      <h3 className=" text-center relative top-16 pt-12 text-3xl font-medium ">
         Services
       </h3>
-      <div className=" mt-10 lg:mt-40">
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={Variants}
+        className=" mt-10 lg:mt-20"
+      >
         <div className="flex flex-col items-center lg:flex-row lg:justify-around ">
           {processes.map((process) => (
             <div key={process.num}>
@@ -32,7 +54,7 @@ export default function Services() {
             Book Appointment
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

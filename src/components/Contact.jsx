@@ -1,12 +1,34 @@
+import { motion } from "framer-motion";
 import contact from "../assets/contact.webp";
 export default function Contact() {
+  const Variants = {
+    offscreen: {
+      opacity: 0,
+      y: 200,
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.3,
+        duration: 0.8,
+      },
+    },
+  };
   return (
-    <section className="bg-midWhite">
+    <motion.section
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.4 }}
+      variants={Variants}
+      className="bg-midWhite"
+    >
       <h3 className="px-4 text-center relative top-16 pt-16 text-3xl font-medium ">
         For any any kain issue, you fit reach us
       </h3>
       <div className="flex flex-col-reverse items-center lg:flex-row lg:justify-around mt-40">
-        <aside> 
+        <aside>
           <form className="grid grid-cols-2 p-8">
             <input
               type="text"
@@ -41,6 +63,6 @@ export default function Contact() {
           <img src={contact} alt="contact" />
         </aside>
       </div>
-    </section>
+    </motion.section>
   );
 }
