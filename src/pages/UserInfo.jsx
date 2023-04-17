@@ -100,7 +100,7 @@ const UserInfo = () => {
       } else {
         toasts.success(data.success)
         setErrors(null)
-        navigate('/dashboard')
+        navigate('/book-appointment')
       }
       setLoading(false)
     }

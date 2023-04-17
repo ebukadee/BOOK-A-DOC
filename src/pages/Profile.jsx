@@ -19,6 +19,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import hospitalicon from '../assets/hospital-svg.svg'
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Profile = () => {
 
@@ -34,8 +35,8 @@ const Profile = () => {
                         <h1 className="text-2xl">Welcome, <span className="text-hint">{user.first_name}{" "}{user.last_name}</span></h1>
                         <p className="mt-4">Get ready to take control of your health welcome aboard!</p>
                         <Link to='/book-appointment'>
-                        <Button variant="contained" className="!mt-8" size="large">BOOK APPOINTMENT</Button>
-                        </Link> 
+                            <Button variant="contained" className="!mt-8" size="large">BOOK APPOINTMENT</Button>
+                        </Link>
                     </div>
                     <div>
                         <img src={animedoc} alt="Anime-doc" />
@@ -63,20 +64,22 @@ const Appointments = () => {
                         <CardActionArea>
                             <CardContent>
                                 <Typography gutterBottom component="div">
-                                    <img src={hospitalicon} className="h-[3rem]" alt="Hospital Icon"/>
+                                    <img src={hospitalicon} className="h-[3rem]" alt="Hospital Icon" />
                                 </Typography>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
+                                    Hospital Name
+                                </Typography>
+                                <Typography gutterBottom component="div">
+                                    <LocationOnIcon />
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
+                                    Rivers State, Port-Harcourt
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
                             <Button size="small" color="primary">
-                                Print
+                                Book Appointment
                             </Button>
                         </CardActions>
                     </Card>

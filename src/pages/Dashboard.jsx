@@ -11,6 +11,7 @@ const Dashboard = ({ children }) => {
         <div>
           <Link to='/profile'>Profile</Link>
           <Link to='/book-appointment' className="ml-5">Book Appointment</Link>
+          <Link to='/book-appointment' className="ml-5">Logout</Link>
         </div>
       </nav>
 
