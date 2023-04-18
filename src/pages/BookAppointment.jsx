@@ -44,18 +44,8 @@ const BookAppointment = () => {
 
 const Appointment = () => {
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [hospital, setHospital] = useState(null)
-
-  const btnHandler = (hospital) =>{
-    setHospital(hospital)
-    handleOpen()
-  }
-
   const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`)
-  
+  console.log(data)
 
   return (
     <>
@@ -84,9 +74,11 @@ const Appointment = () => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" onClick={() => btnHandler(hospital)}>
+          <Link to={`/book-appointment/${hospital._id}`}>
+          <Button size="small" color="primary" >
             Book Appointment
           </Button>
+          </Link>
         </CardActions>
       </Card>
       </div>
@@ -95,7 +87,6 @@ const Appointment = () => {
       
     
     </section>
-    <TransitionsModal hospital={hospital} open={open} handleClose={handleClose}/>
     </>
   )
 }
@@ -103,60 +94,3 @@ const Appointment = () => {
 
 export default BookAppointment
 
-
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '100%',
-  maxWidth: 500,
-  bgcolor: 'background.paper',
-  border: '1px solid #014DD5',
-  boxShadow: 24,
-  p: 2,
-  borderRadius:2
-};
-
-function TransitionsModal({ open, handleClose, hospital}) {
-  
-  console.log(hospital)
-
-  return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" className='text-center !mb-8' variant="h6" component="h2">
-              Book Appointment
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-            <span className="text-hint">Hospital Name:</span> {hospital.name}
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-            <span className="text-hint">Location:</span> {hospital.city}, {hospital.state}
-            </Typography>
-            <div className="flex !mt-8">
-            <Button size="small" variant="contained" className="!ml-auto" color="primary" onClick={() => btnHandler(hospital)}>
-            Book Appointment
-          </Button>
-            </div>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
-}
