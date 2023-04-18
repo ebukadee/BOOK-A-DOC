@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Dashboard from './Dashboard'
 import { Button } from '@mui/material';
 import animedoc from '../assets/anime-doc.svg'
 import { useUserContext } from '../context/userContext'
-import { Link, useFetcher } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -47,10 +47,15 @@ const Appointment = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [hospital, setHospital] = useState(null)
 
+  const btnHandler = (hospital) =>{
+    setHospital(hospital)
+    handleOpen()
+  }
 
   const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`)
-  console.log(data)
+  
 
   return (
     <>
@@ -61,7 +66,7 @@ const Appointment = () => {
           data?.data && 
           data?.data.map((hospital) =>(
             <div className='my-8'>
-            <Card>
+            <Card key={hospital._id}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom component="div">
@@ -79,7 +84,7 @@ const Appointment = () => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" onClick={handleOpen}>
+          <Button size="small" color="primary" onClick={() => btnHandler(hospital)}>
             Book Appointment
           </Button>
         </CardActions>
@@ -90,7 +95,7 @@ const Appointment = () => {
       
     
     </section>
-    <TransitionsModal open={open} handleClose={handleClose}/>
+    <TransitionsModal hospital={hospital} open={open} handleClose={handleClose}/>
     </>
   )
 }
@@ -112,8 +117,9 @@ const style = {
   p: 4,
 };
 
-function TransitionsModal({ open, handleClose}) {
+function TransitionsModal({ open, handleClose, hospital}) {
   
+  console.log(hospital)
 
   return (
     <div>
