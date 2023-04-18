@@ -17,17 +17,17 @@ export default function Contact() {
     },
   };
   return (
-    <motion.section
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.4 }}
-      variants={Variants}
-      className="bg-midWhite"
-    >
+    <section className="lg:h-[100vh]bg-midWhite">
       <h3 className="px-4 text-center relative top-16 pt-16 text-3xl font-medium ">
         For any any kain issue, you fit reach us
       </h3>
-      <div className="flex flex-col-reverse items-center lg:flex-row lg:justify-around mt-40">
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.4 }}
+        variants={Variants}
+        className="flex flex-col-reverse items-center lg:flex-row lg:justify-around mt-40"
+      >
         <aside>
           <form className="grid grid-cols-2 p-8">
             <input
@@ -62,7 +62,7 @@ export default function Contact() {
         <aside>
           <img src={contact} alt="contact" />
         </aside>
-      </div>
-    </motion.section>
+      </motion.div>
+    </section>
   );
 }
