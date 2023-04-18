@@ -3,7 +3,7 @@ import Dashboard from './Dashboard'
 import { Button } from '@mui/material';
 import animedoc from '../assets/anime-doc.svg'
 import { useUserContext } from '../context/userContext'
-import { Link } from 'react-router-dom'
+import { Link, useFetcher } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -14,7 +14,8 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-
+import useFetch from '../hooks/useFetch'
+import { endpoint } from '../utils/endpoints'
 const BookAppointment = () => {
 
   const { user } = useUserContext()
@@ -47,25 +48,33 @@ const Appointment = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
+  const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`)
+  console.log(data)
+
   return (
     <>
     <section className="pt-4">
             <h1 className="font-semibold text-4xl my-8">Recommended, <span className="text-hint">Hospitals</span></h1>
-      <div className='my-8'>
-      <Card>
+      
+        {
+          data?.data && 
+          data?.data.map((hospital) =>(
+            <div className='my-8'>
+            <Card>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom component="div">
               <img src={hospitalicon} className="h-[3rem]" alt="Hospital Icon" />
             </Typography>
             <Typography gutterBottom variant="h5" component="div">
-              Hospital Name
+              {hospital.name}
             </Typography>
             <Typography gutterBottom component="div">
               <LocationOnIcon/>
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Rivers State, Port-Harcourt
+            {hospital.city}, {hospital.state}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -75,7 +84,11 @@ const Appointment = () => {
           </Button>
         </CardActions>
       </Card>
-    </div>
+      </div>
+          ))
+        }
+      
+    
     </section>
     <TransitionsModal open={open} handleClose={handleClose}/>
     </>
