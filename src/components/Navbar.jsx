@@ -33,10 +33,10 @@ export default function Navbar() {
             Home
           </li>
           <li className=" text-2xl font-medium py-8  lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
-            About
+            Services
           </li>
           <li className=" text-2xl font-medium py-8 lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
-            Services
+            About
           </li>
           <li className="text-2xl font-medium py-8 lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
             Contact
