@@ -9,16 +9,19 @@ export default function Navbar() {
   };
   return (
     <>
-      <div>
-        <h2 className="text-xl fixed  z-50  left-8 top-8 font-medium  lg:hidden ">
-          BOOK-A-DOC
-        </h2>
-      </div>
-      <div
-        onClick={handleClick}
-        className=" fixed right-8 top-8 z-50  lg:hidden "
-      >
-        {toggle ? <HambergerMenu color="#000" /> : <CloseCircle color="#000" />}
+      <div className="flex fixed bg-transparent backdrop  lg:hidden">
+        <div>
+          <h2 className="text-xl z-50  left-8 top-8 font-medium  ">
+            BOOK-A-DOC
+          </h2>
+        </div>
+        <div onClick={handleClick} className="  right-8 top-8 z-50  ">
+          {toggle ? (
+            <HambergerMenu color="#000" />
+          ) : (
+            <CloseCircle color="#000" />
+          )}
+        </div>
       </div>
       <nav
         className={`${
