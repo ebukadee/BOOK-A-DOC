@@ -17,7 +17,7 @@ export default function Contact({ id }) {
     },
   };
   return (
-    <section id={id} className="lg:h-[100vh]bg-midWhite">
+    <section id={id} className=" pb-8 lg:h-[100vh]bg-midWhite">
       <h3 className="px-4 text-center relative top-16 pt-16 text-3xl font-medium ">
         For any any kain issue, you fit reach us
       </h3>

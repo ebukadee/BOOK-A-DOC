@@ -36,11 +36,13 @@ export default function Services({ id }) {
             <div key={process.num}>
               <div className="w-72 h-72 mt-8 rounded-3xl bg-midWhite flex flex-col items-center justify-center shadow-md">
                 <div className=" flex justify-center">
-                  <img
-                    src={process.icon}
-                    alt="hospital"
-                    className="h-16 w-16  bg-midAsh"
-                  />
+                  <div className=" bg-midAsh p-5 rounded-full">
+                    <img
+                      src={process.icon}
+                      alt="hospital"
+                      className="h-16 w-16  "
+                    />
+                  </div>
                 </div>
                 <div className="pl-5 pt-5">
                   <h3 className="text-hint text-2xl ">{process.title}</h3>

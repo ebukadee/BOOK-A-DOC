@@ -44,9 +44,31 @@ export default function Testimonial({ id }) {
           pagination={{
             clickable: true,
           }}
+          breakpoints={{
+            350: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            968: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+            1200: {
+              slidesPerView: 5,
+              spaceBetween: 50,
+            },
+          }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="lg:!mx-16 cursor-grab h-auto lg:!pb-16 "
+          className="!mx-8 cursor-grab h-auto !pb-16 "
         >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.num}>
