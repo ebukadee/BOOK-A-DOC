@@ -10,10 +10,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import hospitalicon from "../assets/hospital-svg.svg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
 import useFetch from "../hooks/useFetch";
 import { endpoint } from "../utils/endpoints";
 const BookAppointment = () => {
@@ -56,17 +52,10 @@ const BookAppointment = () => {
 };
 
 const Appointment = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [hospital, setHospital] = useState(null);
 
-  const btnHandler = (hospital) => {
-    setHospital(hospital);
-    handleOpen();
-  };
 
-  const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`);
+  const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`)
+  console.log(data)
 
   return (
     <>
@@ -95,9 +84,11 @@ const Appointment = () => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" onClick={() => btnHandler(hospital)}>
+          <Link to={`/book-appointment/${hospital._id}`}>
+          <Button size="small" color="primary" >
             Book Appointment
           </Button>
+          </Link>
         </CardActions>
       </Card>
       </div>
@@ -106,54 +97,12 @@ const Appointment = () => {
       
     
     </section>
-    <TransitionsModal hospital={hospital} open={open} handleClose={handleClose}/>
     </>
-  );
-};
-
-export default BookAppointment;
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
-function TransitionsModal({ open, handleClose, hospital }) {
-  console.log(hospital);
-
-  return (
-    <div>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
+  )
 }
+
+
+export default BookAppointment
+
+
+

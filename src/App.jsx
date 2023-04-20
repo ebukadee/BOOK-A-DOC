@@ -9,6 +9,7 @@ import UserInfo from "./pages/UserInfo";
 import Auth from './components/Auth'
 import Dashboard from "./pages/Dashboard";
 import BookAppointment from "./pages/BookAppointment";
+import BookAppointmentProgress from "./pages/BookAppointmentProgress";
 
 const router = createBrowserRouter([
   {
@@ -16,15 +17,15 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/login",
+    path: "login",
     element: <Login />,
   },
   {
-    path: "/register",
+    path: "register",
     element: <Register />,
   },
   {
-    path: "/profile",
+    path: "profile",
     element: (
       <Auth>
         <Profile />
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/user-info",
+    path: "user-info",
     element: (
       <Auth>
         <UserInfo />
@@ -40,10 +41,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/book-appointment",
+    path: "book-appointment",
     element: (
       <Auth>
         <BookAppointment />
+      </Auth>
+    ),
+  },
+  {
+    path: "book-appointment/:hospitalId",
+    element: (
+      <Auth>
+        <BookAppointmentProgress />
       </Auth>
     ),
   },
