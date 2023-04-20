@@ -10,10 +10,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import hospitalicon from "../assets/hospital-svg.svg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
 import useFetch from "../hooks/useFetch";
 import { endpoint } from "../utils/endpoints";
 const BookAppointment = () => {
