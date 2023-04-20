@@ -4,6 +4,7 @@ import About from "../components/About";
 import Contact from "../components/Contact";
 import Testimonial from "../components/Testimonial";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <About id="about" />
       <Testimonial id="testimonial" />
       <Contact id="contact" />
+      <Footer />
     </>
   );
 };
