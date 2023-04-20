@@ -1,14 +1,35 @@
 import { stats } from "./data";
 import hero from "../assets/hero.svg";
+import Typed from "react-typed";
 
-export default function Header({id}) {
+export default function Header({ id }) {
   return (
-    <header id={id} className="w-full h-auto lg:h-[100vh] lg:w-full bg-midWhite">
+    <header
+      id={id}
+      className="w-full h-auto lg:h-[100vh] lg:w-full bg-midWhite"
+    >
       <section className="flex-col-reverse flex pt-32 pb-16 lg:flex-row lg:justify-between lg:items-center lg:pt-40 ">
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">
           <p className="text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
             Book appointments <br></br>with top
-            <span className="text-hint pl-2">specialists</span> at<br></br>
+            <span className="text-hint pl-2">
+              <Typed
+                strings={[
+                  "Doctors",
+                  "Nurses",
+                  "Surgeons",
+                  "Cardiologists",
+                  "Ophtamologists",
+                  "Therapists",
+                  "Paedtritician",
+                ]}
+                typeSpeed={110}
+                backSpeed={70}
+                loop
+              />
+            </span>
+            <br></br>
+            at
             <span className="text-hint"> hospitals</span> near you.
           </p>
           <button className="bg-hint px-6 py-4 rounded-3xl mt-3 text-white ">

@@ -25,7 +25,7 @@ export default function Testimonial({ id }) {
   return (
     <section id={id} className="h-[100vh] bg-midAsh">
       <h3 className="text-center pt-20 text-3xl font-medium max-w-xs mx-auto lg:max-w-none">
-        See wetin our clients dey yarn
+       These are what our clients are saying
       </h3>
       <motion.div
         initial="offscreen"
