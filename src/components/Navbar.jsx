@@ -29,17 +29,17 @@ export default function Navbar() {
           BOOK-A-DOC
         </h2>
         <ul className=" bg-transparent flex  flex-col  items-center  lg:justify-center  lg:flex-row lg:h-16 lg:w-64">
-          <li className=" text-2xl font-medium py-8  lg:mx-16 lg:border-b-2 lg:border-hint lg:py-0 lg:font-normal lg:text-sm">
-            Home
+          <li className=" text-2xl font-medium py-8  lg:mx-16  lg:py-0 lg:font-normal lg:text-sm">
+            <a href="/#header"> Home</a>
           </li>
           <li className=" text-2xl font-medium py-8  lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
-            Services
+            <a href="/#services"> Services</a>
           </li>
           <li className=" text-2xl font-medium py-8 lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
-            About
+            <a href="/#about"> About</a>
           </li>
           <li className="text-2xl font-medium py-8 lg:mx-16 lg:font-normal lg:py-0 lg:text-sm">
-            Contact
+            <a href="/#contact"> Contact</a>
           </li>
         </ul>
         <div className=" flex flex-col  lg:flex-row ">

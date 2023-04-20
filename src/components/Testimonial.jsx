@@ -1,17 +1,12 @@
 import { motion } from "framer-motion";
-
 import { testimonials } from "./data";
-
-import React, { useRef, useState } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination, Autoplay, Navigation } from "swiper";
 
-export default function Testimonial() {
+export default function Testimonial({ id }) {
   const cardVariants = {
     offscreen: {
       opacity: 0,
@@ -28,7 +23,7 @@ export default function Testimonial() {
     },
   };
   return (
-    <section className="h-[100vh] bg-midAsh">
+    <section id={id} className="h-[100vh] bg-midAsh">
       <h3 className="text-center pt-20 text-3xl font-medium max-w-xs mx-auto lg:max-w-none">
         See wetin our clients dey yarn
       </h3>

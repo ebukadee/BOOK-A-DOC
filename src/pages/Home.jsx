@@ -3,15 +3,17 @@ import Header from "../components/Header";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Testimonial from "../components/Testimonial";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <>
-      <Header />
-      <Services />
-      <About />
-      <Testimonial />
-      <Contact />
+      <Navbar />
+      <Header id="header" />
+      <Services id="services" />
+      <About id="about" />
+      <Testimonial id="testimonial" />
+      <Contact id="contact" />
     </>
   );
 };

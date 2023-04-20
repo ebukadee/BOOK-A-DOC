@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { processes } from "./data";
-export default function Services() {
+export default function Services({ id }) {
   const Variants = {
     offscreen: {
       opacity: 0,
@@ -17,7 +17,10 @@ export default function Services() {
     },
   };
   return (
-    <section className=" h-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh ">
+    <section
+      id={id}
+      className=" h-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh "
+    >
       <h3 className=" text-center relative top-16 pt-12 text-3xl font-medium ">
         Services
       </h3>

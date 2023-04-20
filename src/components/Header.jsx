@@ -1,11 +1,9 @@
 import { stats } from "./data";
 import hero from "../assets/hero.svg";
-import Navbar from "./Navbar";
 
-export default function Header() {
+export default function Header({id}) {
   return (
-    <header className="w-full h-auto lg:h-[100vh] lg:w-full bg-midWhite">
-      <Navbar />
+    <header id={id} className="w-full h-auto lg:h-[100vh] lg:w-full bg-midWhite">
       <section className="flex-col-reverse flex pt-32 pb-16 lg:flex-row lg:justify-between lg:items-center lg:pt-40 ">
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">
           <p className="text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
