@@ -1,6 +1,5 @@
 import { stats } from "./data";
 import hero from "../assets/hero.svg";
-// import Typed from "react-typed";
 
 export default function Header({ id }) {
   return (
@@ -13,20 +12,7 @@ export default function Header({ id }) {
           <p className="text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
             Book appointments <br></br>with top
             <span className="text-hint pl-2">
-              {/* <Typed
-                strings={[
-                  "Doctors",
-                  "Nurses",
-                  "Surgeons",
-                  "Cardiologists",
-                  "Ophtamologists",
-                  "Therapists",
-                  "Paedtritician",
-                ]}
-                typeSpeed={110}
-                backSpeed={70}
-                loop
-              /> */}
+             Specialists
             </span>
             <br></br>
             at
