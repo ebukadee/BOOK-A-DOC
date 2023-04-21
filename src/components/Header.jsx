@@ -1,5 +1,6 @@
 import { stats } from "./data";
 import hero from "../assets/hero.svg";
+import Typer from "./Typer.jsx";
 
 export default function Header({ id }) {
   return (
@@ -9,12 +10,23 @@ export default function Header({ id }) {
     >
       <section className="flex-col-reverse flex pt-32 pb-16 lg:flex-row lg:justify-between lg:items-center lg:pt-40 ">
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">
-          <p className="text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
-            Book appointments <br></br>with top
-            <span className="text-hint pl-2">
-             Specialists
+          <p className=" text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
+            Book appointments <br></br>
+            <span className="flex">
+              with top
+              <Typer
+                messages={[
+                  "Doctors",
+                  "Nurses",
+                  "Cardiologists",
+                  "Paeditrists",
+                  "Ophtamologists",
+                  "Pharmacists",
+                  "Optimetrics",
+                ]}
+                className="text-hint"
+              />
             </span>
-            <br></br>
             at
             <span className="text-hint"> hospitals</span> near you.
           </p>

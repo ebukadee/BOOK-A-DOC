@@ -60,6 +60,16 @@ html{
   .mobile-nav.open {
     left: 0; /* slide in the navbar */
   }
+  .cursor {
+    border-left: 0.1em solid black;
+    animation: blink 0.7s steps(1) infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
   
   
   
