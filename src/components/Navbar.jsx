@@ -7,6 +7,7 @@ export default function Navbar() {
   const handleClick = () => {
     setToggle((prev) => !prev);
   };
+
   return (
     <>
       <div className="flex fixed bg-transparent backdrop  lg:hidden">

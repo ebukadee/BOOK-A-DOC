@@ -15,6 +15,7 @@ import { useLoaderData } from "react-router-dom";
 import { endpoint } from "../utils/endpoints";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 const BookAppointmentProgress = () => {
@@ -54,8 +55,10 @@ const BookAppointmentProgress = () => {
     };
 
     setLoading(true)
-    const res = await fetch(`${endpoint}/book-appointment`, settings)
+    try{
+      const res = await fetch(`${endpoint}/book-appointment`, settings)
     const result = await res.json()
+    setLoading(false)
     if(result.success){
       return Swal.fire({
         title: "Successful",
@@ -66,6 +69,11 @@ const BookAppointmentProgress = () => {
       });
     }else{
       return toast.error(result.error);
+    }
+    }catch(err){
+      console.log(err)
+      setLoading(false)
+      return toast.error("An error occurred!");
     }
   }
 
@@ -114,7 +122,13 @@ const BookAppointmentProgress = () => {
             </DemoContainer>
           </LocalizationProvider>
           <div className="mt-8">
-          <Button variant="contained" size="large" onClick={submit}>BOOK NOW</Button>
+            {
+              loading ?
+              <Button variant="contained" className="w-full max-w-[10rem]" size="large"><CircularProgress size={26} sx={{ color: () => "#fff" }} /></Button>
+              :
+              <Button variant="contained"  className="w-full max-w-[10rem]" size="large" onClick={submit}>BOOK NOW</Button>
+            }
+          
           </div>
         </div>
       </section>

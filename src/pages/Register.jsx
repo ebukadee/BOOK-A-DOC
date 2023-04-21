@@ -78,10 +78,10 @@ const Register = () => {
           <div className="py-0.5">
             <span
               className="material-symbols-outlined cursor-pointer"
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/')}
             >
              
-              undo
+              home
             </span>
           </div>
 

@@ -13,6 +13,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import useFetch from "../hooks/useFetch";
 import { endpoint } from "../utils/endpoints";
 const BookAppointment = () => {
+  
   const { user } = useUserContext();
 
   return (
