@@ -10,7 +10,7 @@ export default function Header({ id }) {
     >
       <section className="flex-col-reverse flex pt-32 pb-16 lg:flex-row lg:justify-between lg:items-center lg:pt-40 ">
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">
-          <p className=" text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
+          <h1 className=" text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
             Book appointments <br></br>
             <span className="flex">
               with top
@@ -29,7 +29,7 @@ export default function Header({ id }) {
             </span>
             at
             <span className="text-hint"> hospitals</span> near you.
-          </p>
+          </h1>
           <button className="bg-hint px-6 py-4 rounded-3xl mt-3 text-white ">
             Book Appointment
           </button>

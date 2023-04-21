@@ -14,7 +14,7 @@ import { useUserContext } from "../context/userContext";
 import { useLoaderData } from "react-router-dom";
 import { endpoint } from "../utils/endpoints";
 import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 
 
 const BookAppointmentProgress = () => {
@@ -34,6 +34,8 @@ const BookAppointmentProgress = () => {
   const [date, setDate] = React.useState(dayjs(currentDate));
   const [time, setTime] = React.useState(dayjs(d));
 
+  const [loading, setLoading] = React.useState(false)
+
 
   const submit = async () =>{
 
@@ -51,10 +53,17 @@ const BookAppointmentProgress = () => {
       }),
     };
 
+    setLoading(true)
     const res = await fetch(`${endpoint}/book-appointment`, settings)
     const result = await res.json()
     if(result.success){
-      return toast.success(result.success);
+      return Swal.fire({
+        title: "Successful",
+        text: result.success,
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#0777A1",
+      });
     }else{
       return toast.error(result.error);
     }
