@@ -10,11 +10,14 @@ import Auth from './components/Auth'
 import Dashboard from "./pages/Dashboard";
 import BookAppointment from "./pages/BookAppointment";
 import BookAppointmentProgress from "./pages/BookAppointmentProgress";
+import ErrorPage from "./pages/ErrorPage";
+import { endpoint } from "./utils/endpoints";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "login",
@@ -55,6 +58,13 @@ const router = createBrowserRouter([
         <BookAppointmentProgress />
       </Auth>
     ),
+    loader: async ({params}) =>{
+      let res = await fetch(`${endpoint}/hospital/${params.hospitalId}`) 
+      if(res.status === 401){
+        throw new Response("Not Found", { status: 404 });
+      }
+      return res.json();
+    }
   },
 ]);
 function App() {
