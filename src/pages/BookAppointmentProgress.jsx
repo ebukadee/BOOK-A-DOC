@@ -10,6 +10,7 @@ const BookAppointmentProgress = () => {
   return (
     <Dashboard>
         <div>{hospitalId}</div>
+        <section></section>
     </Dashboard>
   )
 }
