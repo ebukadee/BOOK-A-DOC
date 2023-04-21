@@ -65,8 +65,8 @@ const Appointment = () => {
         {
           data?.data && 
           data?.data.map((hospital) =>(
-            <div className='my-8'>
-            <Card key={hospital._id}>
+            <div className='my-8'key={hospital._id}>
+            <Card>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom component="div">

@@ -12,6 +12,11 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { Button } from "@mui/material";
 import { useUserContext } from "../context/userContext";
 import { useLoaderData } from "react-router-dom";
+import { endpoint } from "../utils/endpoints";
+import { toast } from "react-toastify";
+
+
+
 const BookAppointmentProgress = () => {
   const { data } = useLoaderData();
   const { user } = useUserContext();
@@ -28,6 +33,32 @@ const BookAppointmentProgress = () => {
   let currentDate = `${year}-${month}-${day}`;
   const [date, setDate] = React.useState(dayjs(currentDate));
   const [time, setTime] = React.useState(dayjs(d));
+
+
+  const submit = async () =>{
+
+    const settings = {
+      method: "post",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        hospital_id: data._id, 
+        user_id: user._id,
+        date: date,
+        time: time
+      }),
+    };
+
+    const res = await fetch(`${endpoint}/book-appointment`, settings)
+    const result = await res.json()
+    if(result.success){
+      return toast.success(result.success);
+    }else{
+      return toast.error(result.error);
+    }
+  }
 
   return (
     <Dashboard>
@@ -74,7 +105,7 @@ const BookAppointmentProgress = () => {
             </DemoContainer>
           </LocalizationProvider>
           <div className="mt-8">
-          <Button variant="contained" size="large">BOOK NOW</Button>
+          <Button variant="contained" size="large" onClick={submit}>BOOK NOW</Button>
           </div>
         </div>
       </section>
