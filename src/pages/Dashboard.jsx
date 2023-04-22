@@ -56,6 +56,7 @@ const Dashboard = ({ children }) => {
               <ListItemText primary='Profile' />
             </ListItemButton>
           </ListItem>
+          <Divider />
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -64,7 +65,8 @@ const Dashboard = ({ children }) => {
               <ListItemText primary='Book Appointment' />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <Divider />
+          <ListItem disablePadding onClick={logout}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon /> 
