@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import hospitalicon from '../assets/hospital-svg.svg'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import useFetch from '../hooks/useFetch'
 
 const Profile = () => {
 
@@ -53,13 +54,18 @@ const Profile = () => {
 
 const Appointments = () => {
 
+    const { user } = useUserContext()
+    const { data, loading, error } = useFetch(`${endpoint}/user-appointments/${user._id}`)
+    console.log(data)
 
     return (
-        <div className="max-w-lg flex">
+        <div className="">
             <div className="pt-8">
                 <h1 className="font-semibold text-4xl my-8 text-hint">Your Appointments</h1>
                 <div className="my-8"></div>
-                <div className='mb-8'>
+                {
+                    data && data.data.map(d => (
+                        <div className='mb-8'>
                     <Card>
                         <CardActionArea>
                             <CardContent>
@@ -67,23 +73,25 @@ const Appointments = () => {
                                     <img src={hospitalicon} className="h-[3rem]" alt="Hospital Icon" />
                                 </Typography>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    Hospital Name
+                                    {d.hospital.name}
                                 </Typography>
                                 <Typography gutterBottom component="div">
                                     <LocationOnIcon />
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Rivers State, Port-Harcourt
+                                    {d.hospital.city}{" "}{d.hospital.state}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
                             <Button size="small" color="primary">
-                                Book Appointment
+                                Download Slip
                             </Button>
                         </CardActions>
                     </Card>
                 </div>
+                    ))
+                }
             </div>
         </div>
     )

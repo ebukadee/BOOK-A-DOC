@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { endpoint } from '../utils/endpoints'
 import { useUserContext } from "../context/userContext";
 import { toast } from "react-toastify";
+import { Button } from "@mui/material";
 
 
 const Dashboard = ({ children }) => {
@@ -30,7 +31,7 @@ const Dashboard = ({ children }) => {
         <div>
           <Link to='/profile'>Profile</Link>
           <Link to='/book-appointment' className="ml-5">Book Appointment</Link>
-          <span className="ml-5 cursor-pointer hover:text-hint" onClick={logout}>Logout</span>
+          <Button variant="contained" onClick={logout} className="!ml-5 cursor-pointer" size="medium">Logout</Button>
         </div>
       </nav>
 
