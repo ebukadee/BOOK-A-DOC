@@ -18,11 +18,10 @@ import Swal from "sweetalert2";
 import CircularProgress from "@mui/material/CircularProgress";
 
 
+
 const BookAppointmentProgress = () => {
   const { data } = useLoaderData();
   const { user } = useUserContext();
-
-  console.log(user._id, data)
 
   const d = new Date();
 
@@ -37,7 +36,6 @@ const BookAppointmentProgress = () => {
 
   const [loading, setLoading] = React.useState(false)
 
-
   const submit = async () =>{
 
     const settings = {
@@ -49,10 +47,11 @@ const BookAppointmentProgress = () => {
       body: JSON.stringify({
         hospital_id: data._id, 
         user_id: user._id,
-        date: date,
-        time: time
+        date: dayjs(date).format('DD-MM-YYYY'),
+        time: dayjs(time).format('HH:mm:ss')
       }),
     };
+
 
     setLoading(true)
     try{
@@ -110,13 +109,13 @@ const BookAppointmentProgress = () => {
                 <h2 className="font-semibold">Set Appointment Date</h2>
                 <DemoItem>
                   <MobileDatePicker defaultValue={date} value={date}
-          onChange={(newValue) => setDate(newValue)} />
+          onChange={(newValue) => setDate(newValue)} disablePast/>
                 </DemoItem>
               </div>
               <div className="mt-8 border-b-2 pb-2 border-[#ccc]">
                 <h2 className="font-semibold">Set Appointment Time</h2>
                 <DemoItem>
-                  <MobileTimePicker defaultValue={time} value={time} onChange={(newValue) => setTime(newValue)} />
+                  <MobileTimePicker defaultValue={time} value={time} onChange={(newValue) => setTime(newValue)} disablePast/>
                 </DemoItem>
               </div>
             </DemoContainer>

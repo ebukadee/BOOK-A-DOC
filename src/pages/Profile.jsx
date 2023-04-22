@@ -21,6 +21,8 @@ import { CardActionArea, CardActions } from '@mui/material';
 import hospitalicon from '../assets/hospital-svg.svg'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useFetch from '../hooks/useFetch'
+import EventIcon from '@mui/icons-material/Event';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const Profile = () => {
 
@@ -65,7 +67,7 @@ const Appointments = () => {
                 <div className="my-8"></div>
                 {
                     data && data.data.map(d => (
-                        <div className='mb-8'>
+                        <div className='mb-8' key={d._id}>
                     <Card>
                         <CardActionArea>
                             <CardContent>
@@ -78,8 +80,20 @@ const Appointments = () => {
                                 <Typography gutterBottom component="div">
                                     <LocationOnIcon />
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography gutterBottom variant="body2" color="text.secondary">
                                     {d.hospital.city}{" "}{d.hospital.state}
+                                </Typography>
+                                <Typography gutterBottom component="div">
+                                    <EventIcon />
+                                </Typography>
+                                <Typography gutterBottom variant="body2" color="text.secondary">
+                                    {d.date}
+                                </Typography>
+                                <Typography gutterBottom component="div">
+                                    <AccessTimeIcon />
+                                </Typography>
+                                <Typography gutterBottom variant="body2" color="text.secondary">
+                                    {d.time}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
