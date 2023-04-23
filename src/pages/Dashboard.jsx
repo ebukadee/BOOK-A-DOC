@@ -29,7 +29,7 @@ const Dashboard = ({ children }) => {
     if(result.success){
       toast.success("Logout Successful")
       setUserHandler(null)
-      return navigate('/')
+      // return navigate('/')
     }else{
       return toast.error("An error occurred!")
     }
@@ -48,7 +48,7 @@ const Dashboard = ({ children }) => {
       onClick={() => toggleDrawer(false)}
     >
       <List>
-          <ListItem disablePadding  onClick={()=>navigate('/book-appointment')}>
+          <ListItem disablePadding  onClick={()=>navigate('/profile')}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountCircleIcon /> 

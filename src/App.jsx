@@ -12,12 +12,32 @@ import BookAppointment from "./pages/BookAppointment";
 import BookAppointmentProgress from "./pages/BookAppointmentProgress";
 import ErrorPage from "./pages/ErrorPage";
 import { endpoint } from "./utils/endpoints";
+import DownloadSlip from "./pages/DownloadSlip";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     errorElement: <ErrorPage />,
+    loader: async () => {
+      const settings = {
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+        }
+      };
+      try {
+        const res = await fetch(`${endpoint}/verify-user`, settings)
+        const data = await res.json()
+        if (!data.success) {
+          return false
+        }
+      } catch (err) {
+        console.log(err)
+        return false
+      }
+      return true
+    }
   },
   {
     path: "login",
@@ -58,9 +78,9 @@ const router = createBrowserRouter([
         <BookAppointmentProgress />
       </Auth>
     ),
-    loader: async ({params}) =>{
-      let res = await fetch(`${endpoint}/hospital/${params.hospitalId}`) 
-      if(res.status === 401){
+    loader: async ({ params }) => {
+      let res = await fetch(`${endpoint}/hospital/${params.hospitalId}`)
+      if (res.status === 401) {
         throw new Response("Not Found", { status: 404 });
       }
       return res.json();
