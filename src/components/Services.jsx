@@ -19,7 +19,7 @@ export default function Services({ id }) {
   return (
     <section
       id={id}
-      className=" h-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh "
+      className=" h-auto py-auto w-full lg:h-[100vh] lg:w-full lg:relative bg-midAsh"
     >
       <h3 className=" text-center relative top-16 pt-12 text-3xl font-medium ">
         Services

@@ -12,7 +12,7 @@ export default function Header({ id }) {
         <div className="p-8 mt-4 text-center lg:text-left lg:pl-8">
           <h1 className=" text-2xl font-medium lg:text-[44px] lg:leading-[50px] lg:font-[400]">
             Book appointments <br></br>
-            <span className="flex">
+            <span className="flex justify-center lg:justify-start">
               with top
               <Typer
                 messages={[
