@@ -1,6 +1,7 @@
 import { stats } from "./data";
 import hero from "../assets/hero.svg";
 import Typer from "./Typer.jsx";
+import {Link} from 'react-router-dom'
 
 export default function Header({ id }) {
   return (
@@ -30,9 +31,11 @@ export default function Header({ id }) {
             at
             <span className="text-hint"> hospitals</span> near you.
           </h1>
+          <Link to='/book-appointment'>
           <button className="bg-hint px-6 py-4 rounded-3xl mt-3 text-white ">
             Book Appointment
           </button>
+          </Link>
         </div>
         <div className="flex flex-col items-center">
           <img src={hero} alt="Doctor" className="  px-16 lg:w-[600px] " />

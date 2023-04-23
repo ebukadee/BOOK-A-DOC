@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { processes } from "./data";
+import {Link} from 'react-router-dom'
 export default function Services({ id }) {
   const Variants = {
     offscreen: {
@@ -55,9 +56,11 @@ export default function Services({ id }) {
           ))}
         </div>
         <div className="text-center mt-8 py-5">
+          <Link to='/book-appointment'>
           <button className="bg-hint  px-6 py-4 rounded-3xl mt-3 text-white ">
             Book Appointment
           </button>
+          </Link>
         </div>
       </motion.div>
     </section>

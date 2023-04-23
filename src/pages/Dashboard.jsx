@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { endpoint } from '../utils/endpoints'
-import { useUserContext } from "../context/userContext";
 import { toast } from "react-toastify";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -15,11 +14,11 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Footer from '../components/Footer'
 
 
 const Dashboard = ({ children }) => {
   
-  const { setUserHandler } = useUserContext();
   const navigate = useNavigate()
 
   const logout = async () =>{
@@ -28,8 +27,7 @@ const Dashboard = ({ children }) => {
     const result = await res.json()
     if(result.success){
       toast.success("Logout Successful")
-      setUserHandler(null)
-      // return navigate('/')
+      return navigate('/')
     }else{
       return toast.error("An error occurred!")
     }
@@ -103,6 +101,7 @@ const Dashboard = ({ children }) => {
           >
             {list}
         </Drawer>
+      <Footer/>
     </>
   )
 }

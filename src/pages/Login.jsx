@@ -63,6 +63,7 @@ const Login = () => {
     } catch (err) {
       console.log(err);
       setLoading(false);
+      toasts.error("An error occurred!");
     }
   };
 

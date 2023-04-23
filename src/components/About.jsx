@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-
+import { Link } from 'react-router-dom'
 import { TickCircle } from "iconsax-react";
 import { serviceLists } from "./data";
 import nurse from "../assets/nurse.jpg";
@@ -61,9 +61,11 @@ export default function About({ id }) {
               </div>
             ))}
             <div className="pt-3">
+              <Link to='/book-appointment'>
               <button className="bg-hint px-6 py-4 rounded-3xl mt-3 text-white  ">
                 View Hospital
               </button>
+              </Link>
             </div>
           </div>
         </motion.aside>
