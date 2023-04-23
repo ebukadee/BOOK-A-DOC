@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import { Button } from "@mui/material";
 import animedoc from "../assets/anime-doc.svg";
@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import hospitalicon from "../assets/hospital-svg.svg";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import useFetch from "../hooks/useFetch";
+import CircularProgress from "@mui/material/CircularProgress";
 import { endpoint } from "../utils/endpoints";
 const BookAppointment = () => {
   
@@ -55,8 +55,25 @@ const BookAppointment = () => {
 const Appointment = () => {
 
 
-  const { data, loading, error } = useFetch(`${endpoint}/all-hospitals/1`)
+  const [page, setPage] = useState(1)
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(null)
   console.log(data)
+  console.log(page)
+
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        const res = await fetch(`${endpoint}/all-hospitals/${page}`)
+        const data = await res.json()
+        setData(data.data)
+      }catch(err){
+        console.log(err)
+      }
+
+    })()
+  },[page])
+
 
   return (
     <>
@@ -64,8 +81,8 @@ const Appointment = () => {
             <h1 className="font-semibold text-4xl my-8">Recommended, <span className="text-hint">Hospitals</span></h1>
       
         {
-          data?.data && 
-          data?.data.map((hospital) =>(
+          data ?
+          data.map((hospital) =>(
             <div className='my-8'key={hospital._id}>
             <Card>
         <CardActionArea>
@@ -94,8 +111,14 @@ const Appointment = () => {
       </Card>
       </div>
           ))
+          :
+          <CircularProgress size={28} />
         }
-      
+      <div className="my-8"><Button variant="contained" size="small" color="primary" onClick={()=>setPage(prev => prev + 1)}>
+            Next
+          </Button>
+
+      </div>
     
     </section>
     </>
