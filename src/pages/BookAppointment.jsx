@@ -42,7 +42,7 @@ const BookAppointment = () => {
               </Button>
             </Link>
           </div>
-          <div className="sm:hidden">
+          <div className="sm:block hidden">
             <img src={animedoc} alt="Anime-doc" />
           </div>
         </div>

@@ -22,7 +22,7 @@ export default function About({ id }) {
   const VariantTwo = {
     offscreen: {
       opacity: 0,
-      x: 200,
+      x: -200,
     },
     onscreen: {
       x: 0,
@@ -61,8 +61,8 @@ export default function About({ id }) {
               </div>
             ))}
             <div className="pt-3">
-              <button className="bg-hint  px-6 py-4 rounded-3xl mt-3 text-white  ">
-                Book Appointment
+              <button className="bg-hint px-6 py-4 rounded-3xl mt-3 text-white  ">
+                View Hospital
               </button>
             </div>
           </div>
