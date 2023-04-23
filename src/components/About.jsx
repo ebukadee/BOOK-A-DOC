@@ -36,7 +36,7 @@ export default function About({ id }) {
   };
 
   return (
-    <section id={id} className=" h-auto bg-midWhite">
+    <section id={id} className=" h-auto bg-midWhite lg:[100vh]">
       <h3 className="text-center relative top-16 pt-12 text-3xl font-medium ">
         About
       </h3>
