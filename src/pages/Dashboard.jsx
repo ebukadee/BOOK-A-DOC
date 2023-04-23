@@ -48,7 +48,7 @@ const Dashboard = ({ children }) => {
       onClick={() => toggleDrawer(false)}
     >
       <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding  onClick={()=>navigate('/book-appointment')}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountCircleIcon /> 
@@ -57,7 +57,7 @@ const Dashboard = ({ children }) => {
             </ListItemButton>
           </ListItem>
           <Divider />
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={()=>navigate('/book-appointment')}>
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon /> 
@@ -82,7 +82,7 @@ const Dashboard = ({ children }) => {
   return (
     <>
     <section className="bg-midWhite min-h-[100vh]">
-      <nav className="flex justify-between items-center py-4 px-8">
+      <nav className="flex justify-between items-center py-4 px-4 sm:px-8">
         <div><Link to='/' className="text-xl">BOOK A DOC</Link></div>
         <div className='hidden sm:block'>
           <Link to='/profile'>Profile</Link>
@@ -92,7 +92,7 @@ const Dashboard = ({ children }) => {
         <span className="material-icons sm:hidden cursor-pointer" onClick={() => toggleDrawer(true)}>menu</span>
       </nav>
 
-      <div className="px-8">
+      <div className="px-4 sm:px-8">
         {children}
       </div>
     </section>

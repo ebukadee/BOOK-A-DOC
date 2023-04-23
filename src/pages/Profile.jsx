@@ -23,6 +23,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useFetch from '../hooks/useFetch'
 import EventIcon from '@mui/icons-material/Event';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { PDFViewer, Document, Page, Text, StyleSheet } from '@react-pdf/renderer';
 
 const Profile = () => {
 
@@ -41,7 +42,7 @@ const Profile = () => {
                             <Button variant="contained" className="!mt-8" size="large">BOOK APPOINTMENT</Button>
                         </Link>
                     </div>
-                    <div>
+                    <div className="sm:hidden">
                         <img src={animedoc} alt="Anime-doc" />
                     </div>
                 </div>
@@ -54,11 +55,53 @@ const Profile = () => {
     )
 }
 
+const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+      backgroundColor: '#E4E4E4',
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1,
+    },
+    heading: {
+      fontSize: 24,
+      textAlign: 'center',
+      marginBottom: 10,
+    },
+    content: {
+      fontSize: 16,
+      textAlign: 'center',
+    },
+  });
+
+  function MyPDF({ user }) {
+    return (
+      <PDFViewer>
+        <Document>
+          <Page size="A4" style={styles.page}>
+            <Text style={styles.section}>
+              <Text style={styles.heading}>Hello, {user.name}!</Text>
+              <Text style={styles.content}>This is your PDF file.</Text>
+            </Text>
+          </Page>
+        </Document>
+      </PDFViewer>
+    );
+  }
+
 const Appointments = () => {
 
     const { user } = useUserContext()
     const { data, loading, error } = useFetch(`${endpoint}/user-appointments/${user._id}`)
     console.log(data)
+    const [showPDF, setShowPDF] = useState(false);
+    const userd = { name: 'John Doe' };
+  
+    function handleClick() {
+      setShowPDF(true);
+    }
 
     return (
         <div className="">
@@ -98,7 +141,7 @@ const Appointments = () => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
+                            <Button size="small" color="primary"onClick={handleClick}>
                                 Download Slip
                             </Button>
                         </CardActions>
